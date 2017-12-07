@@ -153,7 +153,7 @@ function wrapError(error, stdout, stderr) {
  */
 function buildShellCommand(encoder, inputFile, outputFile) {
     let cmd = [
-        Path.join(__dirname, '.', 'bin', 'apngasm-' + process.platform.toString().toLowerCase()),
+        Path.join(__dirname, '..', 'bin', 'apngasm-' + process.platform.toString().toLowerCase()),
         outputFile,
         inputFile,
         frameDelayMap.get(encoder) + ' 1000',
