@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const Encoder = require('../encoder').Encoder;
+const Assembler = require('../assembler');
 
 /**
  * Configure the subParser for this command, and return a tuple that provides the command's name, as well as the function
@@ -50,9 +50,9 @@ module.exports = function(subParser) {
         {
             action: 'store',
             metavar: '<string>',
-            choices: ['zlib', 'zopfli', '7zip'],
-            defaultValue: '7zip',
-            help: 'The type of compression to use. Default: 7zip',
+            choices: [Assembler.COMPRESS_ZLIB, Assembler.COMPRESS_ZOPFLI, Assembler.COMPRESS_7ZIP],
+            defaultValue: Assembler.COMPRESS_7ZIP,
+            help: 'The type of compression to use. Default: ' + Assembler.COMPRESS_7ZIP,
         }
     );
 
@@ -80,9 +80,9 @@ module.exports = function(subParser) {
  * @param params
  */
 function execute (params) {
-    let exporter = new Encoder(params.loops, params.delay, params.compression);
+    let exporter = new Assembler.Assembler(params.loops, params.delay, params.compression);
 
-    exporter.encodeSync(params.input, params.output);
+    exporter.assembleSync(params.input, params.output);
 
     console.log(`${params.output} assembled successfully.`);
 }
