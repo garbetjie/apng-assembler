@@ -11,7 +11,7 @@ const COMPRESS_ZLIB = module.exports.COMPRESS_ZLIB= 'zlib';
 const COMPRESS_ZOPFLI = module.exports.COMPRESS_ZOPFLI = 'zopfli';
 
 
-class Encoder
+class Assembler
 {
     /**
      * Verify and format the assembly options that are available.
@@ -63,7 +63,7 @@ class Encoder
      * @param {String} outputFile
      * @throws {Error}
      */
-    encodeSync(inputFile, outputFile)
+    assembleSync(inputFile, outputFile)
     {
         try {
             ChildProcess.execSync(
@@ -84,7 +84,7 @@ class Encoder
      * @param {String} outputFile
      * @return {Promise}
      */
-    encode(inputFile, outputFile)
+    assemble(inputFile, outputFile)
     {
         return new Promise(
             (resolve, reject) => {
@@ -92,7 +92,6 @@ class Encoder
                     buildShellCommand(this, inputFile, outputFile).join(' '),
                     (error, stdout, stderr) => {
                         if (error) {
-                            console.log(error);
                             reject(
                                 wrapError(
                                     error, stdout, stderr
@@ -108,8 +107,8 @@ class Encoder
     }
 }
 
-// Export encoder.
-module.exports.Encoder = Encoder;
+// Export assembler.
+module.exports.Assembler = Assembler;
 
 
 /**
@@ -154,7 +153,7 @@ function wrapError(error, stdout, stderr) {
  */
 function buildShellCommand(encoder, inputFile, outputFile) {
     let cmd = [
-        Path.join(__dirname, 'bin', 'apngasm-' + process.platform.toString().toLowerCase()),
+        Path.join(__dirname, '.', 'bin', 'apngasm-' + process.platform.toString().toLowerCase()),
         outputFile,
         inputFile,
         frameDelayMap.get(encoder) + ' 1000',
