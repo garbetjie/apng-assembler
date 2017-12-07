@@ -17,6 +17,7 @@
   "author": "Geoff Garbers <geoff@garbers.co.za>",
   "license": "Zlib",
   "dependencies": {
+    "argparse": "^1.0.9",
     "promise": "^8.0.1"
   }
 }
