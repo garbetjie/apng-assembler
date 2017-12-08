@@ -1,6 +1,6 @@
 {
   "name": "apng-assembler",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Simple wrapper around the apngasm command line binary.",
   "main": "src/index.js",
   "scripts": {
@@ -19,5 +19,14 @@
   "dependencies": {
     "argparse": "^1.0.9",
     "promise": "^8.0.1"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/garbetjie/apng-assembler.git"
+  },
+  "bugs": {
+    "url": "https://github.com/garbetjie/apng-assembler/issues"
+  },
+  "homepage": "https://github.com/garbetjie/apng-assembler#readme"
 }
